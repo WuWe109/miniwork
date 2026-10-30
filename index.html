@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>待办任务 · Todo</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app__header">
+      <h1 class="app__title">待办任务</h1>
+      <p class="app__subtitle">本地存储 · 刷新不丢失 · 随时可用</p>
+    </header>
+
+    <!-- 新增任务表单 -->
+    <form id="task-form" class="card form" autocomplete="off">
+      <div class="form__row">
+        <label class="form__label" for="task-title">标题 <span class="req">*</span></label>
+        <input
+          id="task-title"
+          name="title"
+          class="form__input"
+          type="text"
+          maxlength="80"
+          placeholder="例如：完成数学建模论文初稿"
+          required
+        />
+      </div>
+
+      <div class="form__row">
+        <label class="form__label" for="task-desc">描述（可选）</label>
+        <textarea
+          id="task-desc"
+          name="description"
+          class="form__input form__textarea"
+          rows="2"
+          maxlength="300"
+          placeholder="补充细节、截止时间或备注"
+        ></textarea>
+      </div>
+
+      <div class="form__row form__row--inline">
+        <div class="form__field">
+          <label class="form__label" for="task-priority">优先级</label>
+          <select id="task-priority" name="priority" class="form__input">
+            <option value="urgent">紧急</option>
+            <option value="normal" selected>一般</option>
+            <option value="casual">轻松</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn--primary">+ 添加任务</button>
+      </div>
+    </form>
+
+    <!-- 工具栏：筛选 + 排序 -->
+    <div class="toolbar">
+      <div class="toolbar__group" id="filter-group" role="group" aria-label="按优先级筛选">
+        <button class="chip is-active" data-filter="all">全部</button>
+        <button class="chip" data-filter="urgent">紧急</button>
+        <button class="chip" data-filter="normal">一般</button>
+        <button class="chip" data-filter="casual">轻松</button>
+      </div>
+      <label class="toolbar__sort">
+        排序
+        <select id="sort-select" class="form__input form__input--sm">
+          <option value="priority">按优先级</option>
+          <option value="created">按创建时间</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- 任务列表 -->
+    <main>
+      <ul id="task-list" class="task-list"></ul>
+      <div id="empty-state" class="empty" hidden>
+        <div class="empty__icon">📝</div>
+        <p class="empty__title">还没有任何任务</p>
+        <p class="empty__hint">在上方输入框写下你的第一条待办吧～</p>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
